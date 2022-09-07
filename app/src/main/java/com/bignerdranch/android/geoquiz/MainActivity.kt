@@ -1,12 +1,14 @@
 package com.bignerdranch.android.geoquiz
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+
+
 private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
@@ -28,6 +30,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Log.d(TAG,"onCreate(Bundle?) called")
         setContentView(R.layout.activity_main)
+
+        //val provider : ViewModelProvider = ViewModelProvider(this)
+        //val quizViewModel = provider.get(QuizViewModel::class.java)
+        //Log.d(TAG, "Got a QuizViewModel: $quizViewModel")
 
         trueButton = findViewById(R.id.true_button)
         falseButton = findViewById(R.id.false_button)
