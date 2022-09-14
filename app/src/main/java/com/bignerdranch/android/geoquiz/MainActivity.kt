@@ -22,13 +22,16 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var trueButton: Button
     private lateinit var falseButton: Button
+    private lateinit var prevButton: Button
     private lateinit var nextButton: Button
     private lateinit var questionTextView: TextView
     private lateinit var cheatButton: Button
 
+
     private val quizViewModel: QuizViewModel by lazy {
         ViewModelProvider(this).get(QuizViewModel::class.java)
     }
+    /***
     var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
     {
 
@@ -38,6 +41,7 @@ class MainActivity : AppCompatActivity() {
                 quizViewModel.isCheater = data?.getBooleanExtra(EXTRA_ANSWER_SHOWN, false) ?: false
             }
     }
+    ***/
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate(Bundle?) called")
@@ -48,6 +52,7 @@ class MainActivity : AppCompatActivity() {
 
         trueButton = findViewById(R.id.true_button)
         falseButton = findViewById(R.id.false_button)
+        prevButton = findViewById(R.id.prev_button)
         nextButton = findViewById(R.id.next_button)
         cheatButton = findViewById(R.id.cheat_button)
         questionTextView = findViewById(R.id.question_text_view)
@@ -58,10 +63,15 @@ class MainActivity : AppCompatActivity() {
         falseButton.setOnClickListener { view: View ->
             checkAnswer(false)
         }
+        prevButton.setOnClickListener {
+            quizViewModel.moveToPrev()
+            updateQuestion()
+        }
         nextButton.setOnClickListener {
             quizViewModel.moveToNext()
             updateQuestion()
         }
+        /***
         cheatButton.setOnClickListener {
             //Start CheatActivity
             Log.i("MainActivity", "before cheat activity")
@@ -71,7 +81,7 @@ class MainActivity : AppCompatActivity() {
             resultLauncher.launch(intent)
             Log.i("MainActivity", "finish cheat activity")
 
-        }
+        }***/
         updateQuestion()
 
     }
